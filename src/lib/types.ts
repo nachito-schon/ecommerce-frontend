@@ -6,6 +6,7 @@ export type Product = {
 }
 
 export type ItemStatus =
+  | 'active'
   | 'active-from-next'
   | 'active-from-previous'
   | 'swipe-left'

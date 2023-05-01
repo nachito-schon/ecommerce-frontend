@@ -10,9 +10,9 @@ function App() {
   }, [])
 
   return (
-    <div className="w-screen h-screen px-6 flex items-center bg-zinc-900">
-      <div className="fixed top-0 left-0 w-full py-2 bg-zinc-800 text-center text-white text-3xl">
-        <h1>Virtual Shop</h1>
+    <div className="w-screen h-screen flex flex-col items-stretch bg-zinc-900">
+      <div className="w-full py-2 xl:py-3 bg-zinc-800 text-center text-white text-3xl xl:text-4xl">
+        <h1 className="select-none">Virtual Shop</h1>
       </div>
       <Carousel itemList={productList} />
     </div>
