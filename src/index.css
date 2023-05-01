@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.inactive {
+  display: none;
+}
+
+.active-from-next {
+  animation-name: activeFromNext;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes activeFromNext {
+  0% {
+    transform: translateX(50%) scale(0);
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+  }
+}
+
+.active-from-previous {
+  animation-name: activeFromPrevious;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes activeFromPrevious {
+  0% {
+    transform: translateX(-50%) scale(0);
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+  }
+}
+
+.swipe-left {
+  animation-name: swipeLeft;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes swipeLeft {
+  0% {
+    transform: translateX(0%) scale(1);
+  }
+  100% {
+    transform: translateX(-50%) scale(0);
+  }
+}
+
+.swipe-right {
+  animation-name: swipeRight;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes swipeRight {
+  0% {
+    transform: translateX(0%) scale(1);
+  }
+  100% {
+    transform: translateX(50%) scale(0);
+  }
+}
