@@ -25,3 +25,5 @@ $> npm run start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+![ecommerce-frontend](https://user-images.githubusercontent.com/85847402/235555103-b7356677-0c3e-442c-a558-71fc7edf3e67.jpg)
