@@ -15,7 +15,7 @@ export const ProductCard = ({ item, status, handleClick }: Props) => {
         <img
           src={item.image_url}
           alt={item.name}
-          className="h-full object-cover"
+          className="min-w-full min-h-full object-cover"
         />
       </div>
       <div className="h-[120px] p-4 flex flex-col justify-between">

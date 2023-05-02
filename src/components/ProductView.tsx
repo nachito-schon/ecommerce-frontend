@@ -40,14 +40,14 @@ export const ProductView = ({ item, isOpen, setIsOpen }: Props) => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full max-w-md xl:max-w-2xl flex flex-col xl:flex-row xl:gap-4 transform overflow-hidden rounded-2xl bg-zinc-800 p-6 text-white text-left align-middle shadow-xl transition-all cursor-default">
-                <div className="h-[220px] xl:h-[350px] xl:w-[350px] flex items-center bg-zinc-700">
+                <div className="h-[220px] xl:h-[350px] xl:w-[350px] flex items-center bg-zinc-700 xl:flex-1">
                   <img
                     src={item?.image_url}
                     alt={item?.name}
                     className="max-h-full max-w-full m-auto"
                   />
                 </div>
-                <div className="mt-3 xl:mt-0 flex flex-col justify-between xl:grow">
+                <div className="mt-3 xl:mt-0 flex flex-col justify-between xl:flex-1">
                   <div>
                     <h3 className="text-2xl xl:text-3xl">{item?.name}</h3>
                     <h2 className="text-3xl xl:text-4xl text-lime-300">{`$${item?.price}`}</h2>
