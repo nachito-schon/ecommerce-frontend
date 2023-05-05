@@ -5,9 +5,10 @@ import { ProductView } from './ProductView'
 
 type Props = {
   itemList: Product[] | null[]
+  isLoggedIn: boolean
 }
 
-export const Carousel = ({ itemList }: Props) => {
+export const Carousel = ({ itemList, isLoggedIn }: Props) => {
   const [currentItemIndex, setCurrentItemIndex] = useState(0)
   const [moving, setMoving] = useState<'backwards' | 'forwards' | null>(null)
   const [isProductViewOpen, setIsProductViewOpen] = useState(false)
@@ -99,6 +100,7 @@ export const Carousel = ({ itemList }: Props) => {
         item={itemList[currentItemIndex]}
         isOpen={isProductViewOpen}
         setIsOpen={setIsProductViewOpen}
+        isLoggedIn={isLoggedIn}
       />
     </div>
   )
