@@ -10,7 +10,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   useEffect(() => {
     getProductList().then((list: Product[]) => setProductList(list))
+    if (localStorage.getItem('token')) {
+      setIsLoggedIn(true)
+    }
   }, [])
+
+  const logOut = () => {
+    localStorage.removeItem('token')
+    setIsLoggedIn(false)
+  }
 
   return (
     <div className="w-screen h-screen flex flex-col items-stretch bg-zinc-900">
@@ -20,21 +28,25 @@ function App() {
         </h1>
       </div>
       {isLoggedIn ? (
-        <div className="select-none ml-auto mt-5 xl:mt-8 mr-5 xl:mr-14 py-1 xl:py-2 px-3 xl:px-5 border-2 rounded bg-zinc-300 text-black xl:text-2xl font-medium text-white">
-          Logged in
-        </div>
+        <button
+          className="select-none ml-auto mt-5 xl:mt-8 mr-5 xl:mr-14 py-1 xl:py-2 px-3 xl:px-5 rounded bg-zinc-300 text-black text-xl xl:text-2xl font-medium outline-none"
+          onClick={logOut}
+        >
+          LOG OUT
+        </button>
       ) : (
         <button
-          className="ml-auto mt-5 xl:mt-8 mr-5 xl:mr-14 py-1 xl:py-2 px-3 xl:px-5 border-zinc-300 border-2 rounded bg-zinc-800 text-xl xl:text-2xl font-medium text-white"
+          className="ml-auto mt-5 xl:mt-8 mr-5 xl:mr-14 py-1 xl:py-2 px-3 xl:px-5 border-zinc-300 border-2 rounded bg-zinc-800 text-xl xl:text-2xl font-medium text-white outline-none"
           onClick={() => setIsAuthenticationOpen(true)}
         >
           LOG IN
         </button>
       )}
-      <Carousel itemList={productList} />
+      <Carousel itemList={productList} isLoggedIn={isLoggedIn} />
       <AuthenticationPanel
         isOpen={isAuthenticationOpen}
         setIsOpen={setIsAuthenticationOpen}
+        setIsLoggedIn={setIsLoggedIn}
       />
     </div>
   )

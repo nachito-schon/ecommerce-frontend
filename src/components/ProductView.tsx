@@ -1,14 +1,17 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Product } from '../lib/types'
+import { ProductEditView } from './ProductEditView'
 
 type Props = {
   item: Product | null
   isOpen: boolean
   setIsOpen: (arg: boolean) => void
+  isLoggedIn: boolean
 }
 
-export const ProductView = ({ item, isOpen, setIsOpen }: Props) => {
+export const ProductView = ({ item, isOpen, setIsOpen, isLoggedIn }: Props) => {
+  const [isProductEditViewOpen, setIsProductEditViewOpen] = useState(false)
   const closeModal = () => {
     setIsOpen(false)
   }
@@ -52,14 +55,26 @@ export const ProductView = ({ item, isOpen, setIsOpen }: Props) => {
                     <h3 className="text-2xl xl:text-3xl">{item?.name}</h3>
                     <h2 className="text-3xl xl:text-4xl text-lime-300">{`$${item?.price}`}</h2>
                     <p className="xl:text-lg my-3">{item?.description}</p>
+                    {isLoggedIn ? (
+                      <button
+                        className="bg-zinc-700 font-medium px-3 py-1.5 rounded outline-none"
+                        onClick={() => setIsProductEditViewOpen(true)}
+                      >
+                        EDIT
+                      </button>
+                    ) : null}
                   </div>
                   <button
-                    className="self-end bg-zinc-700 font-medium px-3 py-1.5 rounded"
+                    className="self-end bg-zinc-700 font-medium px-3 py-1.5 rounded outline-none"
                     onClick={closeModal}
                   >
                     CLOSE
                   </button>
                 </div>
+                <ProductEditView
+                  isOpen={isProductEditViewOpen}
+                  setIsOpen={setIsProductEditViewOpen}
+                />
               </Dialog.Panel>
             </Transition.Child>
           </div>

@@ -1,18 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import { attemptLogin } from '../lib/fetchData'
+import { editProduct } from '../lib/fetchData'
 
 type Props = {
   isOpen: boolean
   setIsOpen: (arg: boolean) => void
-  setIsLoggedIn: (arg: boolean) => void
 }
 
-export const AuthenticationPanel = ({
-  isOpen,
-  setIsOpen,
-  setIsLoggedIn,
-}: Props) => {
+export const ProductEditView = ({ isOpen, setIsOpen }: Props) => {
   const [message, setMessage] = useState('')
   const closeModal = () => {
     setIsOpen(false)
@@ -22,20 +17,16 @@ export const AuthenticationPanel = ({
     event.preventDefault()
     setMessage('')
     const form = new FormData(event.target as HTMLFormElement)
-    const user = form.get('user') as string
-    const password = form.get('password') as string
-    if (!user || !password) {
-      setMessage('Enter a valid user and password')
-      return
-    }
-    attemptLogin(user, password).then(
-      (token) => {
-        setIsLoggedIn(true)
-        setIsOpen(false)
-        localStorage.setItem('token', JSON.stringify(token))
+    const product = {
+      brand: {
+        name: form.get('brand-name'),
+        logo_url: form.get('brand-logo_url'),
       },
-      (error) => setMessage('Incorrect user/password')
-    )
+      name: form.get('name'),
+      description: form.get('description'),
+      image_url: form.get('image_url'),
+      price: form.get('price'),
+    }
   }
 
   return (
@@ -71,26 +62,67 @@ export const AuthenticationPanel = ({
                     onSubmit={handleSubmit}
                   >
                     <label className="flex flex-col gap-4 text-xl">
-                      User:
+                      Name:
                       <input
                         className="w-56 px-2 py-1 bg-zinc-200 text-black outline-none"
                         type="text"
-                        name="user"
+                        name="name"
+                        required
                       />
                     </label>
                     <label className="flex flex-col gap-4 text-xl">
-                      Password:
+                      Description:
                       <input
                         className="w-56 px-2 py-1 bg-zinc-200 text-black outline-none"
-                        type="password"
-                        name="password"
+                        type="text"
+                        name="description"
+                        required
                       />
                     </label>
+                    <label className="flex flex-col gap-4 text-xl">
+                      Image URL:
+                      <input
+                        className="w-56 px-2 py-1 bg-zinc-200 text-black outline-none"
+                        type="text"
+                        name="image_url"
+                        required
+                      />
+                    </label>
+                    <label className="flex flex-col gap-4 text-xl">
+                      Price:
+                      <input
+                        className="w-56 px-2 py-1 bg-zinc-200 text-black outline-none"
+                        type="number"
+                        name="price"
+                        required
+                      />
+                    </label>
+                    <div className="flex flex-col gap-6 bg-zinc-700 px-6 py-3 rounded">
+                      <h4 className="text-2xl font-medium">Brand</h4>
+                      <label className="flex flex-col gap-4 text-xl">
+                        Name:
+                        <input
+                          className="w-56 px-2 py-1 bg-zinc-200 text-black outline-none"
+                          type="text"
+                          name="brand-name"
+                          required
+                        />
+                      </label>
+                      <label className="flex flex-col gap-4 text-xl">
+                        Logo URL:
+                        <input
+                          className="w-56 px-2 py-1 bg-zinc-200 text-black outline-none"
+                          type="text"
+                          name="brand-logo_url"
+                          required
+                        />
+                      </label>
+                    </div>
                     <button
                       className="m-auto px-3 py-1.5 border-zinc-300 border-2 rounded bg-zinc-800 font-medium text-xl text-white rounded"
                       type="submit"
                     >
-                      Log-In
+                      Submit
                     </button>
                     <p className="text-red-500">{message}</p>
                   </form>
