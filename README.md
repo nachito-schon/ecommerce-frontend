@@ -2,7 +2,7 @@
 
 This is a **Single-Page** that shows products provided by [ecommerce-backend API](https://github.com/nachito-schon/ecommerce-backend).
 
-You can swipe through all items clicking on the arrows on both sides of the page, and click on the item to see a detailed view with the product's description.
+You can swipe through all items clicking on the arrows on both sides of the page, and click on the item to see a detailed view with the product's description and brand.
 
 It's a **fully responsive** website, so it's designed for both mobile and desktop.
 
