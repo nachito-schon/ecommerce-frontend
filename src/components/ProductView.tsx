@@ -47,14 +47,22 @@ export const ProductView = ({ item, isOpen, setIsOpen }: Props) => {
                     className="max-h-full max-w-full m-auto"
                   />
                 </div>
-                <div className="mt-3 xl:mt-0 flex flex-col justify-between xl:flex-1">
+                <div className="mt-3 xl:mt-0 flex flex-col justify-between gap-6 xl:flex-1">
                   <div>
                     <h3 className="text-2xl xl:text-3xl">{item?.name}</h3>
                     <h2 className="text-3xl xl:text-4xl text-lime-300">{`$${item?.price}`}</h2>
                     <p className="xl:text-lg my-3">{item?.description}</p>
+                    <div className="flex justify-end items-center gap-2">
+                      <p className="font-medium text-xl">{item?.brand.name}</p>
+                      <img
+                        src={item?.brand.logo_url}
+                        alt={item?.brand.name}
+                        className="max-h-8 max-w-8"
+                      />
+                    </div>
                   </div>
                   <button
-                    className="self-end bg-zinc-700 font-medium px-3 py-1.5 rounded"
+                    className="self-end bg-zinc-700 font-medium px-3 py-1.5 rounded outline-none"
                     onClick={closeModal}
                   >
                     CLOSE
