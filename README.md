@@ -4,6 +4,8 @@ This is a **Single-Page** that shows products provided by [ecommerce-backend API
 
 You can swipe through all items clicking on the arrows on both sides of the page, and click on the item to see a detailed view with the product's description and brand.
 
+It, also, has a log-in feature. If an authorized user enters (user: "**admin**", password: "**admin**"), access to product edition is granted, and an edit button appears on every product detailed view **(work in progress!, product edition is not available yet)** that opens a product edition form.
+
 It's a **fully responsive** website, so it's designed for both mobile and desktop.
 
 ## Tech-stack
